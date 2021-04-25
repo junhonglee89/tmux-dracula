@@ -48,9 +48,12 @@ display_weather()
     precipitation=$(curl -sL wttr.in\?format="%p&m" |awk '{print $1}')
     pressure=$(curl -sL wttr.in\?format="%P&m" |awk '{print $1}')
     moon=$(curl -sL wttr.in\?format="%m&m" |awk '{print $1}')
-    city=$(curl -sL wttr.in\?format=%l |awk '{print $1}' | awk -F'[, ]' '{print $1}')
-    region=$(curl -sL wttr.in\?format=%l |awk '{print $2}' | awk -F'[, ]' '{print $1}')
-    echo  "$unicode ${temperature/+/} $RH $wind $precipitation $moon   $city, $region"
+#    city=$(curl -sL wttr.in\?format=%l |awk '{print $1}' | awk -F'[, ]' '{print $1}')
+#    region=$(curl -sL wttr.in\?format=%l |awk '{print $2}' | awk -F'[, ]' '{print $1}')
+    city=$(curl https://freegeoip.app/csv/ | cut -d, -f"6")
+    region=$(curl https://freegeoip.app/csv/ | cut -d, -f"3")
+
+    echo  "$unicode  ${temperature/+/} $RH $wind $precipitation $moon   $city, $region"
 }
 
 forecast_unicode()
