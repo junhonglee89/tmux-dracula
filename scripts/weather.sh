@@ -53,7 +53,8 @@ display_weather()
     city=$(curl https://freegeoip.app/csv/ | cut -d, -f"6")
     region=$(curl https://freegeoip.app/csv/ | cut -d, -f"3")
 
-    echo  "$unicode  ${temperature/+/} $RH $wind $precipitation $moon   $city, $region"
+    echo  "$unicode  ${temperature/+/} $city $region"
+#    echo  "$unicode  ${temperature/+/} $RH $wind $precipitation $moon   $city, $region"
 }
 
 forecast_unicode()
